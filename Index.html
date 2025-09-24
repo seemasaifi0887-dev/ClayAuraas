@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClayAuraa - प्राकृतिक Multani Mitti उत्पाद</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8D6E63;
+            --secondary: #A1887F;
+            --accent: #5D4037;
+            --light: #f8f5f2;
+            --dark: #4E342E;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: white;
+            color: var(--dark);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        /* Three-dot menu styles */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--dark);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            width: 200px;
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .mobile-menu.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--dark);
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+
+        .mobile-menu a:hover {
+            background-color: var(--light);
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1590155369077-8de5e8f5ce36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNsYXl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: white;
+            border-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark);
+            position: relative;
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-img {
+            height: 250px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .product-info p {
+            margin-bottom: 20px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .product-price {
+            font-size: 22px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 50px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-image {
+            flex: 1;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            margin-bottom: 30px;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        /* Customer Support */
+        .customer-support {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 15px;
+        }
+
+        .support-btn {
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        .support-btn:hover {
+            transform: scale(1.1);
+            background-color: var(--dark);
+        }
+
+        .support-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .option i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .option.call {
+            background-color: #25D366;
+        }
+
+        .option.whatsapp {
+            background-color: #128C7E;
+        }
+
+        .option:hover {
+            transform: translateX(-5px);
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-section p, .footer-section li {
+            margin-bottom: 10px;
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
+                margin-top: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: row;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .product-grid, .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .customer-support {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <!-- यहाँ आप अपना लोगो इमेज जोड़ सकते हैं -->
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0ZXh0IHg9IjEwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzVENDAzNyI+TkFUVVJBTCBNSVQ8L3RleHQ+PC9zdmc+" alt="ClayAuraa Logo">
+                    <span class="logo-text">ClayAuraa</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">होम</a></li>
+                        <li><a href="#products">उत्पाद</a></li>
+                        <li><a href="#services">सेवाएं</a></li>
+                        <li><a href="#about">हमारे बारे में</a></li>
+                        <li><a href="#contact">संपर्क</a></li>
+                    </ul>
+                </nav>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="mobile-menu" id="mobileMenu">
+                    <a href="#home">होम</a>
+                    <a href="#products">उत्पाद</a>
+                    <a href="#services">सेवाएं</a>
+                    <a href="#about">हमारे बारे में</a>
+                    <a href="#contact">संपर्क</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>प्राकृतिक सौंदर्य Multani Mitti के साथ</h1>
+                <p>ClayAuraa आपकी त्वचा के लिए शुद्ध और प्रभावी उत्पाद प्रदान करता है। Amazon पर उपलब्ध।</p>
+                <a href="#products" class="btn">उत्पाद देखें</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">हमारे उत्पाद</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="image.png">
+                    </div>
+                    <div class="product-info">
+                        <h3>Multani Mitti फेस पैक</h3>
+                        <p>त्वचा को साफ और तरोताजा करें। प्राकृतिक Multani Mitti से बना।</p>
+                        <span class="product-price">₹299</span>
+                        <a href="https://www.amazon.com/" class="btn">Amazon पर खरीदें</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1590421958455-5da5c6d8c87c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNvYXB8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=80" alt="Multani Mitti Soap">
+                    </div>
+                    <div class="product-info">
+                        <h3>Multani Mitti साबुन</h3>
+                        <p>रोजाना उपयोग के लिए प्राकृतिक साबुन। त्वचा कोमल और चमकदार बनाएं।</p>
+                        <span class="product-price">₹199</span>
+                        <a href="https://www.amazon.com/" class="btn">Amazon पर खरीदें</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFjZSUyMHdhc2h8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=80" alt="Multani Mitti Face Wash">
+                    </div>
+                    <div class="product-info">
+                        <h3>Multani Mitti फेस वॉश</h3>
+                        <p>गहराई से साफ करने वाला फेस वॉश। त्वचा के रोमछिद्रों को साफ करें।</p>
+                        <span class="product-price">₹349</span>
+                        <a href="https://www.amazon.com/" class="btn">Amazon पर खरीदें</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">हमारी सेवाएं</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>त्वचा परामर्श</h3>
+                    <p>हमारे विशेषज्ञ आपकी त्वचा के प्रकार के अनुसार सही उत्पाद चुनने में मदद करते हैं।</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>शीघ्र वितरण</h3>
+                    <p>आर्डर देने के 24 घंटों के भीतर पूरे भारत में वितरण।</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 सहायता</h3>
+                    <p>हमारी ग्राहक सहायता टीम आपकी सभी queries के लिए हमेशा उपलब्ध है।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">हमारे बारे में</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>ClayAuraa एक प्रीमियम ब्रांड है जो प्राकृतिक Multani Mitti उत्पादों में माहिर है। हमारा मिशन प्राकृतिक तत्वों का उपयोग करके उच्च गुणवत्ता वाले सौंदर्य उत्पाद प्रदान करना है।</p>
+                    <p>हमारे सभी उत्पाद प्राकृतिक सामग्री से बने हैं और किसी भी हानिकारक रसायनों से मुक्त हैं। हमारा लक्ष्य आपकी त्वचा की प्राकृतिक सुंदरता को बढ़ाना है।</p>
+                    <p>हमारे उत्पाद Amazon पर उपलब्ध हैं और पूरे भारत में वितरित किए जाते हैं।</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJhbCUyMGluZ3JlZGllbnRzfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=80" alt="प्रकृति की शुद्धता">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">संपर्क करें</h2>
+            <div class="contact-content">
+                <p>हमसे संपर्क करने के लिए नीचे दिए गए Customer Support बटन का उपयोग करें। हम आपकी सहायता के लिए सप्ताह के सातों दिन उपलब्ध हैं।</p>
+                <p>वैकल्पिक रूप से, आप हमें सीधे 8273827743 पर कॉल या WhatsApp कर सकते हैं।</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ClayAuraa</h3>
+                    <p>प्राकृतिक Multani Mitti उत्पादों में विशेषज्ञता। प्रकृति की शुद्धता, आपकी त्वचा के लिए।</p>
+                </div>
+                <div class="footer-section">
+                    <h3>जल्दी लिंक</h3>
+                    <ul>
+                        <li><a href="#home">होम</a></li>
+                        <li><a href="#products">उत्पाद</a></li>
+                        <li><a href="#services">सेवाएं</a></li>
+                        <li><a href="#about">हमारे बारे में</a></li>
+                        <li><a href="#contact">संपर्क</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>संपर्क</h3>
+                    <p><i class="fas fa-phone"></i> 8273827743</p>
+                    <p><i class="fas fa-envelope"></i> info@clayauraa.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> मुंबई, भारत</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ClayAuraa. सभी अधिकार सुरक्षित।</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Customer Support -->
+    <div class="customer-support">
+        <div class="support-options">
+            <a href="tel:8273827743" class="option call">
+                <i class="fas fa-phone"></i> कॉल करें
+            </a>
+            <a href="https://wa.me/918273827743?text=Hi, I need help with ClayAuraa products" class="option whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+        <div class="support-btn" id="supportBtn">
+            <i class="fas fa-headset"></i>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const supportBtn = document.getElementById('supportBtn');
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            // Toggle support options
+            supportBtn.addEventListener('click', function() {
+                const options = document.querySelector('.support-options');
+                options.classList.toggle('active');
+            });
+            
+            // Toggle mobile menu
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('active');
+            });
+            
+            // Close menus when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!supportBtn.contains(event.target) && !document.querySelector('.support-options').contains(event.target)) {
+                    document.querySelector('.support-options').classList.remove('active');
+                }
+                
+                if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        mobileMenu.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
