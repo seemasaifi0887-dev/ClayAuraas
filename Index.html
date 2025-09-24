@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClayAuraa - प्राकृतिक Multani Mitti उत्पाद</title>
+    <title>ClayAuraa - Natural Multani Mitti Products</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Styles */
@@ -28,6 +28,7 @@
             background-color: var(--light);
             color: #333;
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -75,6 +76,7 @@
         nav ul {
             display: flex;
             list-style: none;
+            align-items: center;
         }
 
         nav ul li {
@@ -106,25 +108,61 @@
             width: 100%;
         }
 
-        /* Three-dot menu styles */
+        /* Translation Button */
+        .translate-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .translate-btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Professional Menu Button */
         .menu-toggle {
             display: none;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: space-between;
             width: 30px;
-            height: 25px;
+            height: 21px;
             background: transparent;
             border: none;
             cursor: pointer;
             padding: 0;
+            z-index: 1001;
+            position: relative;
         }
 
         .menu-toggle span {
-            width: 100%;
+            display: block;
             height: 3px;
+            width: 100%;
             background-color: var(--dark);
-            border-radius: 5px;
+            border-radius: 3px;
             transition: var(--transition);
+            transform-origin: center;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
         }
 
         .mobile-menu {
@@ -133,30 +171,39 @@
             top: 100%;
             right: 0;
             background-color: white;
-            width: 200px;
+            width: 250px;
             box-shadow: var(--shadow);
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
             z-index: 1000;
+            animation: fadeIn 0.3s ease;
         }
 
         .mobile-menu.active {
             display: block;
-            animation: fadeIn 0.3s ease;
         }
 
         .mobile-menu a {
             display: block;
-            padding: 12px 20px;
+            padding: 15px 20px;
             color: var(--dark);
             text-decoration: none;
             border-bottom: 1px solid #eee;
             transition: var(--transition);
+            font-weight: 500;
         }
 
         .mobile-menu a:hover {
             background-color: var(--light);
             color: var(--accent);
+            padding-left: 25px;
+        }
+
+        .mobile-translate {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            border-top: 1px solid #eee;
         }
 
         /* Hero Section */
@@ -203,6 +250,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 14px;
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -439,6 +487,16 @@
             flex-direction: column;
             gap: 15px;
             margin-bottom: 15px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .support-options.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         .option {
@@ -532,6 +590,11 @@
             opacity: 0.7;
         }
 
+        /* Language Toggle */
+        .hindi {
+            display: none;
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -569,6 +632,10 @@
                 display: flex;
             }
 
+            .translate-btn {
+                display: none;
+            }
+
             .hero h1 {
                 font-size: 36px;
             }
@@ -589,6 +656,12 @@
                 bottom: 20px;
                 right: 20px;
             }
+            
+            .support-options {
+                position: absolute;
+                bottom: 70px;
+                right: 0;
+            }
         }
     </style>
 </head>
@@ -598,17 +671,17 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <!-- यहाँ आप अपना लोगो इमेज जोड़ सकते हैं -->
                     <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0ZXh0IHg9IjEwIiB5PSIzNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzVENDAzNyI+TkFUVVJBTCBNSVQ8L3RleHQ+PC9zdmc+" alt="ClayAuraa Logo">
                     <span class="logo-text">ClayAuraa</span>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="#home">होम</a></li>
-                        <li><a href="#products">उत्पाद</a></li>
-                        <li><a href="#services">सेवाएं</a></li>
-                        <li><a href="#about">हमारे बारे में</a></li>
-                        <li><a href="#contact">संपर्क</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><button class="translate-btn" id="translateBtn"><i class="fas fa-language"></i> हिंदी</button></li>
                     </ul>
                 </nav>
                 <button class="menu-toggle" id="menuToggle">
@@ -617,11 +690,14 @@
                     <span></span>
                 </button>
                 <div class="mobile-menu" id="mobileMenu">
-                    <a href="#home">होम</a>
-                    <a href="#products">उत्पाद</a>
-                    <a href="#services">सेवाएं</a>
-                    <a href="#about">हमारे बारे में</a>
-                    <a href="#contact">संपर्क</a>
+                    <a href="#home">Home</a>
+                    <a href="#products">Products</a>
+                    <a href="#services">Services</a>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact</a>
+                    <div class="mobile-translate">
+                        <button class="translate-btn" id="mobileTranslateBtn"><i class="fas fa-language"></i> हिंदी</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -631,9 +707,12 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <h1>प्राकृतिक सौंदर्य Multani Mitti के साथ</h1>
-                <p>ClayAuraa आपकी त्वचा के लिए शुद्ध और प्रभावी उत्पाद प्रदान करता है। Amazon पर उपलब्ध।</p>
-                <a href="#products" class="btn">उत्पाद देखें</a>
+                <h1 class="english">Natural Beauty with Multani Mitti</h1>
+                <h1 class="hindi">प्राकृतिक सौंदर्य Multani Mitti के साथ</h1>
+                <p class="english">ClayAuraa provides pure and effective products for your skin. Available on Amazon.</p>
+                <p class="hindi">ClayAuraa आपकी त्वचा के लिए शुद्ध और प्रभावी उत्पाद प्रदान करता है। Amazon पर उपलब्ध।</p>
+                <a href="#products" class="btn english">View Products</a>
+                <a href="#products" class="btn hindi">उत्पाद देखें</a>
             </div>
         </div>
     </section>
@@ -641,17 +720,21 @@
     <!-- Products Section -->
     <section class="products" id="products">
         <div class="container">
-            <h2 class="section-title">हमारे उत्पाद</h2>
+            <h2 class="section-title english">Our Products</h2>
+            <h2 class="section-title hindi">हमारे उत्पाद</h2>
             <div class="product-grid">
                 <div class="product-card">
                     <div class="product-img">
-                        <img src="image.png">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFjZSUyMHBhY2t8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=80" alt="Multani Mitti Face Pack">
                     </div>
                     <div class="product-info">
-                        <h3>Multani Mitti फेस पैक</h3>
-                        <p>त्वचा को साफ और तरोताजा करें। प्राकृतिक Multani Mitti से बना।</p>
+                        <h3 class="english">Multani Mitti Face Pack</h3>
+                        <h3 class="hindi">Multani Mitti फेस पैक</h3>
+                        <p class="english">Cleanse and refresh your skin. Made with natural Multani Mitti.</p>
+                        <p class="hindi">त्वचा को साफ और तरोताजा करें। प्राकृतिक Multani Mitti से बना।</p>
                         <span class="product-price">₹299</span>
-                        <a href="https://www.amazon.com/" class="btn">Amazon पर खरीदें</a>
+                        <a href="https://www.amazon.com/" class="btn english">Buy on Amazon</a>
+                        <a href="https://www.amazon.com/" class="btn hindi">Amazon पर खरीदें</a>
                     </div>
                 </div>
                 <div class="product-card">
@@ -659,10 +742,13 @@
                         <img src="https://images.unsplash.com/photo-1590421958455-5da5c6d8c87c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNvYXB8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=80" alt="Multani Mitti Soap">
                     </div>
                     <div class="product-info">
-                        <h3>Multani Mitti साबुन</h3>
-                        <p>रोजाना उपयोग के लिए प्राकृतिक साबुन। त्वचा कोमल और चमकदार बनाएं।</p>
+                        <h3 class="english">Multani Mitti Soap</h3>
+                        <h3 class="hindi">Multani Mitti साबुन</h3>
+                        <p class="english">Natural soap for daily use. Keeps skin soft and glowing.</p>
+                        <p class="hindi">रोजाना उपयोग के लिए प्राकृतिक साबुन। त्वचा कोमल और चमकदार बनाएं।</p>
                         <span class="product-price">₹199</span>
-                        <a href="https://www.amazon.com/" class="btn">Amazon पर खरीदें</a>
+                        <a href="https://www.amazon.com/" class="btn english">Buy on Amazon</a>
+                        <a href="https://www.amazon.com/" class="btn hindi">Amazon पर खरीदें</a>
                     </div>
                 </div>
                 <div class="product-card">
@@ -670,10 +756,13 @@
                         <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFjZSUyMHdhc2h8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=80" alt="Multani Mitti Face Wash">
                     </div>
                     <div class="product-info">
-                        <h3>Multani Mitti फेस वॉश</h3>
-                        <p>गहराई से साफ करने वाला फेस वॉश। त्वचा के रोमछिद्रों को साफ करें।</p>
+                        <h3 class="english">Multani Mitti Face Wash</h3>
+                        <h3 class="hindi">Multani Mitti फेस वॉश</h3>
+                        <p class="english">Deep cleansing face wash. Cleanses skin pores effectively.</p>
+                        <p class="hindi">गहराई से साफ करने वाला फेस वॉश। त्वचा के रोमछिद्रों को साफ करें।</p>
                         <span class="product-price">₹349</span>
-                        <a href="https://www.amazon.com/" class="btn">Amazon पर खरीदें</a>
+                        <a href="https://www.amazon.com/" class="btn english">Buy on Amazon</a>
+                        <a href="https://www.amazon.com/" class="btn hindi">Amazon पर खरीदें</a>
                     </div>
                 </div>
             </div>
@@ -683,28 +772,35 @@
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
-            <h2 class="section-title">हमारी सेवाएं</h2>
+            <h2 class="section-title english">Our Services</h2>
+            <h2 class="section-title hindi">हमारी सेवाएं</h2>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-user-md"></i>
                     </div>
-                    <h3>त्वचा परामर्श</h3>
-                    <p>हमारे विशेषज्ञ आपकी त्वचा के प्रकार के अनुसार सही उत्पाद चुनने में मदद करते हैं।</p>
+                    <h3 class="english">Skin Consultation</h3>
+                    <h3 class="hindi">त्वचा परामर्श</h3>
+                    <p class="english">Our experts help you choose the right products according to your skin type.</p>
+                    <p class="hindi">हमारे विशेषज्ञ आपकी त्वचा के प्रकार के अनुसार सही उत्पाद चुनने में मदद करते हैं।</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-truck"></i>
                     </div>
-                    <h3>शीघ्र वितरण</h3>
-                    <p>आर्डर देने के 24 घंटों के भीतर पूरे भारत में वितरण।</p>
+                    <h3 class="english">Quick Delivery</h3>
+                    <h3 class="hindi">शीघ्र वितरण</h3>
+                    <p class="english">Delivery across India within 24 hours of ordering.</p>
+                    <p class="hindi">आर्डर देने के 24 घंटों के भीतर पूरे भारत में वितरण।</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-headset"></i>
                     </div>
-                    <h3>24/7 सहायता</h3>
-                    <p>हमारी ग्राहक सहायता टीम आपकी सभी queries के लिए हमेशा उपलब्ध है।</p>
+                    <h3 class="english">24/7 Support</h3>
+                    <h3 class="hindi">24/7 सहायता</h3>
+                    <p class="english">Our customer support team is always available for all your queries.</p>
+                    <p class="hindi">हमारी ग्राहक सहायता टीम आपकी सभी queries के लिए हमेशा उपलब्ध है।</p>
                 </div>
             </div>
         </div>
@@ -713,15 +809,21 @@
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title">हमारे बारे में</h2>
+            <h2 class="section-title english">About Us</h2>
+            <h2 class="section-title hindi">हमारे बारे में</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>ClayAuraa एक प्रीमियम ब्रांड है जो प्राकृतिक Multani Mitti उत्पादों में माहिर है। हमारा मिशन प्राकृतिक तत्वों का उपयोग करके उच्च गुणवत्ता वाले सौंदर्य उत्पाद प्रदान करना है।</p>
-                    <p>हमारे सभी उत्पाद प्राकृतिक सामग्री से बने हैं और किसी भी हानिकारक रसायनों से मुक्त हैं। हमारा लक्ष्य आपकी त्वचा की प्राकृतिक सुंदरता को बढ़ाना है।</p>
-                    <p>हमारे उत्पाद Amazon पर उपलब्ध हैं और पूरे भारत में वितरित किए जाते हैं।</p>
+                    <p class="english">ClayAuraa is a premium brand specializing in natural Multani Mitti products. Our mission is to provide high-quality beauty products using natural elements.</p>
+                    <p class="hindi">ClayAuraa एक प्रीमियम ब्रांड है जो प्राकृतिक Multani Mitti उत्पादों में माहिर है। हमारा मिशन प्राकृतिक तत्वों का उपयोग करके उच्च गुणवत्ता वाले सौंदर्य उत्पाद प्रदान करना है।</p>
+                    
+                    <p class="english">All our products are made from natural ingredients and free from any harmful chemicals. Our goal is to enhance your skin's natural beauty.</p>
+                    <p class="hindi">हमारे सभी उत्पाद प्राकृतिक सामग्री से बने हैं और किसी भी हानिकारक रसायनों से मुक्त हैं। हमारा लक्ष्य आपकी त्वचा की प्राकृतिक सुंदरता को बढ़ाना है।</p>
+                    
+                    <p class="english">Our products are available on Amazon and are delivered throughout India.</p>
+                    <p class="hindi">हमारे उत्पाद Amazon पर उपलब्ध हैं और पूरे भारत में वितरित किए जाते हैं।</p>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJhbCUyMGluZ3JlZGllbnRzfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=80" alt="प्रकृति की शुद्धता">
+                    <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJhbCUyMGluZ3JlZGllbnRzfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=80" alt="Purity of Nature">
                 </div>
             </div>
         </div>
@@ -730,10 +832,14 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title">संपर्क करें</h2>
+            <h2 class="section-title english">Contact Us</h2>
+            <h2 class="section-title hindi">संपर्क करें</h2>
             <div class="contact-content">
-                <p>हमसे संपर्क करने के लिए नीचे दिए गए Customer Support बटन का उपयोग करें। हम आपकी सहायता के लिए सप्ताह के सातों दिन उपलब्ध हैं।</p>
-                <p>वैकल्पिक रूप से, आप हमें सीधे 8273827743 पर कॉल या WhatsApp कर सकते हैं।</p>
+                <p class="english">Use the Customer Support button below to contact us. We are available seven days a week to assist you.</p>
+                <p class="hindi">हमसे संपर्क करने के लिए नीचे दिए गए Customer Support बटन का उपयोग करें। हम आपकी सहायता के लिए सप्ताह के सातों दिन उपलब्ध हैं।</p>
+                
+                <p class="english">Alternatively, you can call or WhatsApp us directly at 8273827743.</p>
+                <p class="hindi">वैकल्पिक रूप से, आप हमें सीधे 8273827743 पर कॉल या WhatsApp कर सकते हैं।</p>
             </div>
         </div>
     </section>
@@ -743,37 +849,42 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ClayAuraa</h3>
-                    <p>प्राकृतिक Multani Mitti उत्पादों में विशेषज्ञता। प्रकृति की शुद्धता, आपकी त्वचा के लिए।</p>
+                    <h3 class="english">ClayAuraa</h3>
+                    <h3 class="hindi">ClayAuraa</h3>
+                    <p class="english">Specializing in natural Multani Mitti products. Nature's purity, for your skin.</p>
+                    <p class="hindi">प्राकृतिक Multani Mitti उत्पादों में विशेषज्ञता। प्रकृति की शुद्धता, आपकी त्वचा के लिए।</p>
                 </div>
                 <div class="footer-section">
-                    <h3>जल्दी लिंक</h3>
+                    <h3 class="english">Quick Links</h3>
+                    <h3 class="hindi">जल्दी लिंक</h3>
                     <ul>
-                        <li><a href="#home">होम</a></li>
-                        <li><a href="#products">उत्पाद</a></li>
-                        <li><a href="#services">सेवाएं</a></li>
-                        <li><a href="#about">हमारे बारे में</a></li>
-                        <li><a href="#contact">संपर्क</a></li>
+                        <li><a href="#home" class="english">Home</a><a href="#home" class="hindi">होम</a></li>
+                        <li><a href="#products" class="english">Products</a><a href="#products" class="hindi">उत्पाद</a></li>
+                        <li><a href="#services" class="english">Services</a><a href="#services" class="hindi">सेवाएं</a></li>
+                        <li><a href="#about" class="english">About Us</a><a href="#about" class="hindi">हमारे बारे में</a></li>
+                        <li><a href="#contact" class="english">Contact</a><a href="#contact" class="hindi">संपर्क</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>संपर्क</h3>
+                    <h3 class="english">Contact</h3>
+                    <h3 class="hindi">संपर्क</h3>
                     <p><i class="fas fa-phone"></i> 8273827743</p>
                     <p><i class="fas fa-envelope"></i> info@clayauraa.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> मुंबई, भारत</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 ClayAuraa. सभी अधिकार सुरक्षित।</p>
+                <p class="english">&copy; 2025 ClayAuraa. All Rights Reserved.</p>
+                <p class="hindi">&copy; 2025 ClayAuraa. सभी अधिकार सुरक्षित।</p>
             </div>
         </div>
     </footer>
 
     <!-- Customer Support -->
     <div class="customer-support">
-        <div class="support-options">
+        <div class="support-options" id="supportOptions">
             <a href="tel:8273827743" class="option call">
-                <i class="fas fa-phone"></i> कॉल करें
+                <i class="fas fa-phone"></i> <span class="english">Call</span><span class="hindi">कॉल करें</span>
             </a>
             <a href="https://wa.me/918273827743?text=Hi, I need help with ClayAuraa products" class="option whatsapp">
                 <i class="fab fa-whatsapp"></i> WhatsApp
@@ -787,28 +898,55 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const supportBtn = document.getElementById('supportBtn');
+            const supportOptions = document.getElementById('supportOptions');
             const menuToggle = document.getElementById('menuToggle');
             const mobileMenu = document.getElementById('mobileMenu');
+            const translateBtn = document.getElementById('translateBtn');
+            const mobileTranslateBtn = document.getElementById('mobileTranslateBtn');
+            
+            // Language toggle functionality
+            function toggleLanguage() {
+                const englishElements = document.querySelectorAll('.english');
+                const hindiElements = document.querySelectorAll('.hindi');
+                
+                englishElements.forEach(el => {
+                    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+                });
+                
+                hindiElements.forEach(el => {
+                    el.style.display = el.style.display === 'block' ? 'none' : 'block';
+                });
+                
+                // Update button text
+                const isHindi = hindiElements[0].style.display === 'block';
+                translateBtn.innerHTML = isHindi ? '<i class="fas fa-language"></i> English' : '<i class="fas fa-language"></i> हिंदी';
+                mobileTranslateBtn.innerHTML = isHindi ? '<i class="fas fa-language"></i> English' : '<i class="fas fa-language"></i> हिंदी';
+            }
+            
+            translateBtn.addEventListener('click', toggleLanguage);
+            mobileTranslateBtn.addEventListener('click', toggleLanguage);
             
             // Toggle support options
-            supportBtn.addEventListener('click', function() {
-                const options = document.querySelector('.support-options');
-                options.classList.toggle('active');
+            supportBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                supportOptions.classList.toggle('active');
             });
             
             // Toggle mobile menu
             menuToggle.addEventListener('click', function(e) {
                 e.stopPropagation();
+                menuToggle.classList.toggle('active');
                 mobileMenu.classList.toggle('active');
             });
             
             // Close menus when clicking outside
             document.addEventListener('click', function(event) {
-                if (!supportBtn.contains(event.target) && !document.querySelector('.support-options').contains(event.target)) {
-                    document.querySelector('.support-options').classList.remove('active');
+                if (!supportBtn.contains(event.target) && !supportOptions.contains(event.target)) {
+                    supportOptions.classList.remove('active');
                 }
                 
                 if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    menuToggle.classList.remove('active');
                     mobileMenu.classList.remove('active');
                 }
             });
@@ -829,6 +967,7 @@
                         });
                         
                         // Close mobile menu if open
+                        menuToggle.classList.remove('active');
                         mobileMenu.classList.remove('active');
                     }
                 });
